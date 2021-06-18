@@ -53,4 +53,18 @@ China_political_strength <-G3$Frequency
 
 IDV<- mutate(IV, China_military_power=China_military_power, China_military_modernization=China_military_modernization,China_military_potential=China_military_potential,China_economic_power=China_economic_power,China_economic_growth=China_economic_growth,China_economic_potential=China_economic_potential,China_economic_strength=China_economic_strength,China_political_power=China_political_power,China_political_system=China_political_system,China_political_structure=China_political_structure,China_political_strength=China_political_strength)
 
+H<-ngram(phrase="China=>undemocratic", corpus="eng_2019", year_start=1949 , year_end=2020 )
+I<-ngram(phrase="China=>authoritarian", corpus="eng_2019", year_start=1949 , year_end=2020 )
+J<-ngram(phrase="China's ideology", corpus="eng_2019", year_start=1949 , year_end=2020 )
+J1<-ngram(phrase="China's socialism", corpus="eng_2019", year_start=1949 , year_end=2020 )
+J2<-ngram(phrase="China's communism", corpus="eng_2019", year_start=1949 , year_end=2020 )
+
+China_undemocrtic<-H$Frequency
+China_authoritarian<-I$Frequency
+China_ideology<-J$Frequency
+China_socialism<-J1$Frequency
+China_communism<-J2$Frequency
+
+NewIDV<- mutate(IDV,China_undemocrtic=China_undemocrtic,China_authoritarian=China_authoritarian,China_ideology=China_ideology,China_socialism=China_socialism,China_communism=China_communism)
+
 
