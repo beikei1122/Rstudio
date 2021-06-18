@@ -1,0 +1,7 @@
+install.packages("tidyverse")
+library(tidyverse)
+install.packages("ngramr")
+library(ngramr)
+ngram(phrase="", corpus="eng_2019", year_start= , year_end= )
+mutate(df, name = colum)
+cor.test(~a+b, data=)
