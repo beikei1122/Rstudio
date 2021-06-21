@@ -18,10 +18,10 @@ B<-ngram(phrase="China challenges_VERB", corpus="eng_2019", year_start=1949 , ye
 C<-ngram(phrase="China influences_VERB", corpus="eng_2019", year_start=1949 , year_end=2020)
 China_challenges <-B$Frequency
 China_influences <-C$Frequency
-AA <- mutate(A, China_challenges=China_challenges)
-AAA<-mutate(AA,China_influences=China_influences)
-AAAA<-AAA %>% select(Year, Frequency, China_challenges,China_influences)
-IV<- AAAA%>% select(Year, Threats, China_challenges,China_influences) 
+AA <- mutate(A, China_challenges=China_challenges,China_influences=China_influences)
+AAA<-AA %>% select(Year, Frequency, China_challenges,China_influences)
+#rename3
+IV<- rename (AAA, China_threats=Frequency)
 
 E<-ngram(phrase="China's military power", corpus="eng_2019", year_start=1949 , year_end=2020 )
 E1<-ngram(phrase="China's military modernization", corpus="eng_2019", year_start=1949 , year_end=2020 )
@@ -67,4 +67,12 @@ China_communism<-J2$Frequency
 
 NewIDV<- mutate(IDV,China_undemocrtic=China_undemocrtic,China_authoritarian=China_authoritarian,China_ideology=China_ideology,China_socialism=China_socialism,China_communism=China_communism)
 
+x<-NewIDV %>%filter(Year>= 1978)
 
+#linear regression#
+ nn<-lm(China_challenges~China_economic_power+China_economic_growth+China_economic_potential, data=IDV)
+ summary(nn)
+ library(ggplot2)
+ 
+ ggplot(b_lm, aes(x=China_challenges,y=China_economic_power+China_economic_growth+China_economic_potential))+geom_point()+stat_smooth(method = "lm",col="blue",formula = y~x)
+ 
